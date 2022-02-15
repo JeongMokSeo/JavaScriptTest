@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로저</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//클로저 주의사항
+	//클로저 자신은 자유변수를 변경시킬수 있다.
+	var sum =(function(){
+		var rst = 0;  //초기화로 착각하면 안됨!
+		return function(a,b) { rst += a + b ; return rst;}
+	})();
+	console.log(sum(1,4));
+	console.log(sum(1,4));
+	
+	//여러 클로저함수가 같은 자유변수 공유
+	var fdim =(function() {
+		var pos=0;
+		return [function(){console.log(++pos)}, function(){console.log(--pos);}];
+	})();
+	var up=fdim[0], down=fdim[1];
+	up();
+	up();
+	up();
+	down();
+	
+	//loop속의 클로저
+	function loop() {
+		var cnt=5;
+		for (var i = 1; i <= cnt; ++i) {
+			setTimeout(function(){console.log(i);}, i * 1000); // 클로저가 실행되는 시점에서의 i값은? settimeout의 i값
+		}
+	}
+	loop();
+	
+	function loop1() {
+		var cnt=5;
+		for (var i = 1; i <= cnt; ++i) {
+			(function(j){setTimeout(function(){console.log(j);}, ( j + 6) * 1000);})(i); //i를 인자로 즉시 실행 
+		}
+	}
+	loop1();
+	
+	
+	
+	</script>
+</div>
+
+</body>
+</html>

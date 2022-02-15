@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 참조로 함수 호출(call by reference).
+// 기본타입은 call by value : 인자의 값이 복사됨(인자의 address에 복사값이 기록)
+// 참조타입은 call by reference : 인자에 참조 address가 전달
+
+var mnum = 1; // address 100(mnum): 1
+var mobj = {value:"original"}; //address 1000 : ( address 1001 (value) : 'original'), address 101(mobj) : 1000(R)
+function test(num, obj) {  // address 2000 : (address 2001(num) : undefined, address 2002(obj) : undefined)
+	num += 1;
+	obj.value = "changed";
+	console.log(num + " " + obj.value);
+}
+test(mnum, mobj); // address 2001 : 1 (V), address 2002 : 1000(R), address 2001 : 2, address 1001 : 'changed'
+console.log(mnum + " " + mobj.value);
+
+
+
+</script>
+</body>
+</html>

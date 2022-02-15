@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>객체지향 프로그래밍 II</title>
+ </head>
+ <body>
+  <div>
+	<script>
+		// 캡슐화. 배열형 자유변수 사용시 주의
+		var Exch = function() { 
+			var exch = [1120, 1110, 1130];
+			return { 
+				getExch:function(){return exch;},
+			};
+		};
+		var exfunc = Exch();
+		console.dir(exfunc);
+		var exch1 = exfunc.getExch(); // 객체는 = 로 복사 되지 않고 같은 address를 가리킴
+		console.log(exch1);
+		exch1.push(1210); // 자유변수의 실제 내용이 바뀜. 주의 return exch.slice(0);
+		console.log(exch1);
+		console.log(exfunc.getExch());
+
+		// 함수로 생성
+		var ExchN = function() {
+			var exch = [1120, 1110, 1130];
+			var F = function(){};
+			F.prototype={
+				getExch:function(){return exch;}
+			}
+			return F;
+		}();
+		var exchn = new ExchN(); // 함수로 생성. 부모의 prototype활용
+		console.dir(exchn);
+		console.log(exchn.getExch());
+
+	</script>
+  </div>
+ </body>
+</html>

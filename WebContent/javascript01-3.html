@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// data type
+// 참조타입(객체타입, reference): address에 reference 주소가 있다.
+// 객체의 생셩 : Object(), literal(표현식), 생성자함수
+
+	var f1 = Object(); // 최상위, 가장기본 object, __proto__만 있음.
+	f1.name = "name1"; f1.type='triangle'; // property 동적 생성
+	console.dir(f1);
+	console.log(typeof f1);
+	console.log(f1);
+
+	console.log("-------------------------------");
+	var f2 = {'name':'name2', 'type':'rectangle'};  //literal  표현식으로 만듦
+	console.dir(f2);
+	console.log(typeof f2);
+	console.log(f2);
+	
+	console.log("-------------------------------");
+	function Shape(name, type) {
+		this.name = name;
+		this.type = type;
+		this.toString= function() {
+			return this.name + " " + this.type;
+		}
+	}
+	
+	var f3 = new Shape("name3", "circle"); //생성자 함수
+	console.dir(f3);
+	console.log(typeof f3);
+	console.log(f3);
+	console.log(f3.toString());
+ 	
+	console.log("-------------------------------");
+
+	function a(x) {
+		this.x = x;
+		return this.x;
+	}	
+	
+	var f4 = a("abc");
+	console.dir(typeof(f4) + ":" + f4);
+	
+	var f4 = new a("abc");
+	console.dir(typeof(f4) + ":" + f4.x);
+	
+	
+	
+</script>
+</body>
+</html>

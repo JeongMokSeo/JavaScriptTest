@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+	// 함수형프로그램을 활용한 주요 함수들
+	// currying : Haskell Curry 이름에서 유래. 인자가 여러 개인 함수를 작은 수의 인자를 가진 함수의 체인으로 만드는 것
+	function sum(a,b,c){ 
+		console.log("inside sum : ");
+		console.dir(arguments);
+		return a+b+c; 
+	}
+	function curry(func){
+		var slice = Array.prototype.slice; 
+		var args = slice.apply(arguments,[1]); // 함수명 뒤의 인자로 고정값이 될 예정
+		console.dir(args); 
+		return function() { 
+			console.dir(arguments);
+			console.dir(slice.apply(arguments));
+			console.dir(args.concat(slice.apply(arguments)));
+			return func.apply(null, args.concat(slice.apply(arguments)));  // 고정 + 새인자
+		};
+	}
+
+	var sum5 = curry(sum, 5); // 5를 고정으로 인자를 2개로 줄임
+	console.dir(sum5);
+	console.log("===========");
+	console.dir(sum5(1,2));
+
+	var sum57 = curry(sum5, 7); // 5,7을 고정으로 인자를 1개로 줄임
+	console.dir(sum57(8));
+	
+	Function.prototype.curry = function() { // 모든 함수에 적용
+		var slice = Array.prototype.slice; 
+		var args = slice.apply(arguments); //고정 인자들
+		var that = this; 
+		return function() { 
+			return that.apply(null, args.concat(slice.apply(arguments))); // 고정 + 새인자들 
+		};
+	}
+
+	var sum59 = sum5.curry(9);
+	console.log(sum59(1));
+
+	
+	</script>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// this binding 예제
+var val = 1;
+var obj = {
+		val:10,
+		f1:function () {
+			var that = this;  // that는 obj를 가리킴.
+			this.val++;  // this는 obj
+			console.log("inside f1 :" + this.val + " " + this);
+			console.log("inside f1 that :" + that.val + " " + that);
+			f2 = function() { //method가 아니다. 전역 window가 this
+				this.val++; that.val++;
+				console.log("inside f2 :" + this.val + " " + this);
+				console.log("inside f2 that :" + that.val + " " + that);
+				f3 = function() {
+					this.val++; that.val++;
+					console.log("inside f3 :" + this.val + " " + this);
+					console.log("inside f3 that :" + that.val + " " + that);
+				}
+				f3();
+			}
+			f2();
+		}
+};
+obj.f1(); //this는 obj
+console.log("-----------------");
+f2();  // 전역이라 외부에서 접근 가능. var f2 = xxx 로 선언하지 않아  (var가 없어 전역변수).  
+console.log("-----------------");
+f3();  // 전역이라 외부에서 접근 가능.
+</script>
+</body>
+</html>

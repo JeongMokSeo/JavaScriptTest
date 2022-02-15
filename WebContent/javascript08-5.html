@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로저</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//setTimeout()에 함수 전달
+	function callme(me) {console.log("callme: Hi," + me);}
+	setTimeout(callme, 3000);
+	setTimeout(callme("Mr. Kim"), 3000); //잘 해석해 보자
+	
+	function callmeNew(me) {
+		return function(){console.log("callmeNew : Hi, " + me);}; //me를 자유변수로 하는 closure
+	}
+	setTimeout(callmeNew("Mr. Kim"), 4000); 
+	
+	</script>
+</div>
+
+</body>
+</html>

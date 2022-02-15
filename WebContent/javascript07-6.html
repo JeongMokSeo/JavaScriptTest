@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+<div>
+	<script type="text/javascript">
+	// with : scope chain 상위에 강제 할당
+	
+	var exch = {base:1115, buying: 1110, selling:1120};
+	function f() {
+		var base=2000, buying = base * 0.95, selling = base * 1.05;
+		console.log("f", base, buying, selling);
+		var f1;
+		with(exch) {
+			f1 = function() {
+				console.log("f1", base, buying, selling);
+			}
+		}
+		f1();
+	}
+	f();
+	//f1 scope chain = 0:exch, 1:f1obj, 2:fobj, 3:window
+	
+	//hosting
+	y=2;
+	//f3(); //error hosting불가
+	f4(); //선언식은 hosting. 내부적으로 상위 할당.
+	var f3=function() {console.log("f3 x , y :" + x + " , " + y);};
+	function f4()  {console.log("f4 x , y :" + x + " , " + y);};
+	var x =1;
+	//변수는 hosting되지 않는다.
+	//window (y:undefined, f3:undefined, f4:function....x:undefined)  
+	//--> y:2 -> * f3(undefined)호출 error * -> f4_context(x undefined) -> x:1
+	
+	
+	
+	</script>
+</div>
+
+</body>
+</html>

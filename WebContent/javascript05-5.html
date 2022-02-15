@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 생성자함수와 this binding
+// 생성자 함수용으로 제작된 함수는 관례상 대문자로 이름을 만든다.
+// 생성자 함수의 목적은 객체생성이지 함수 생성이 아니다.
+// 생성순서 : 빈객체생성, this binding, property생성, 객체 return;
+
+function Car(company, name) {
+	this.company = company;
+	this.name = name;
+}
+console.dir(Car); // prototype과 __proto__(빈함수)존재. prototype에 constructor
+console.log(Car.length); // 함수는 __proto__에 length가 있다. 
+var sonata = new Car("Hyundai", "Sonata"); 
+//Car의 prototype에 의해 빈객체 생성  --> 이것이 this로 binding --> 프로퍼티 생성 --> 객체리턴(return이 없으니 생성된 객체가 return됨)
+//(객체의 address가 sonata에 할당됨)
+console.dir(sonata);
+console.log(sonata.company + " " + sonata.name);
+console.log(sonata.length);  //따라서 length가 없다.
+                  
+var k5 = {company:"kia", name:"k5"};
+console.dir(k5);
+
+var sm3= Car("Samsung", "SM3"); //일반함수 호출. window가 this로 binding
+console.dir(sm3);  //함수의 return이 없으니 undefined;
+console.log(window.company + " " + window.name); // window의 property로 들어감.
+//Car는 생성자로 디자인 된 것으로 위의 일반 호출은 의도와 어긋난다.
+
+function Const(arg) {
+	if (!(this instanceof arguments.callee)) { //의도치 않은 일반 호출
+		return new Const(arg); //객체 생성으로 변경	
+	}
+	this.prop = arg;
+}
+var abc = Const('ABC');
+console.log(abc.prop);
+
+
+</script>
+</body>
+</html>

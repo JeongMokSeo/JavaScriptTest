@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+	// 함수형프로그램을 활용한 주요 함수들
+	// bind : this를 사용자 지정으로 변경
+	Function.prototype.bind = function(thisobj) { // this대체 객체 
+		var slice = Array.prototype.slice; 
+		var args = slice.apply(arguments, [1]);
+		var that = this; 
+		return function() { 
+			return that.apply(thisobj, args.concat(slice.apply(arguments))); // curry기능 + this 지정까지
+		};
+	}
+
+	var listme = function(obj) {
+		for(var prop in this) console.log(prop + " : " + this[prop]);
+		console.log("===================");
+		for(var idx in arguments) console.log(idx + " : " + arguments[idx]);
+	}
+	listme(1,2);
+	console.log("**********************");
+	var bobj = {aaa:'aaa', bbb:'bbb'};
+	var listobj = listme.bind(bobj);
+	listobj(4,5);
+	console.log("**********************");
+	var listobj7 = listme.bind(bobj,7);
+	listobj7(8);
+
+	// bind가 currying을 포함하기 때문에 bind만 엔진에 내장되어 있다, 위의 예제 bind 보다 더 많은 기능이 있음
+	</script>
+  </div>
+
+</body>
+</html>

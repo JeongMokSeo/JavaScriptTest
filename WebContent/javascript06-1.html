@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 프로토타입: Prototype property vs __proto__([[Prototype]])
+console.log('Object'); console.log(Object);  //생성자함수
+var obj={};
+console.log('obj:'); console.dir(obj);
+var objbyOb=new Object;
+console.log('objbyOb:'); console.dir(objbyOb);
+
+console.log('Function :'); console.log(Function);
+function stat() {};
+console.log('stat:'); console.dir(stat);
+
+var fbyFunc = new Function();
+console.log('fbyFunc:'); console.dir(fbyFunc);
+
+var fbyFunc1 = new Function('x','y','return x+y');
+console.log('fbyFunc1:'); console.dir(fbyFunc1);
+console.dir(fbyFunc1(4,5));
+
+function Gen(name) {this.name = name;}
+console.log("Gen:"); console.dir(Gen);  //생성자함수
+
+var kim = new Gen('kim');
+console.log("kim:"); console.dir(kim);
+
+console.log("Array:"); console.dir(Array);
+var arr=[];
+console.log("arr:"); console.dir(arr);
+var arrbyArr = new Array();
+console.log("arrbyArr:"); console.dir(arrbyArr);
+
+
+
+
+</script>
+</body>
+</html>

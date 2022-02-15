@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>객체지향 프로그래밍 II</title>
+ </head>
+ <body>
+  <div>
+	<script>
+		// 캡슐화
+		var Car0 = function(m) {
+			var model = m?m:'unknown';  // 변수는 외부접근이 안됨
+			this.getModel=function(){return model;};
+			this.setModel=function(m){model = m;};
+		}
+		console.dir(Car0);
+		var sm3 = new Car0('SM3'); // Car0의 instance  __proto__ 가 Car0의 prototype을 가리킴
+		console.log(sm3.getModel());
+		sm3.setModel('SSMM33');
+		console.log(sm3.getModel());
+		console.dir(sm3);
+
+		console.log("=====================");
+		
+		var Car = function(m) { // 클로저와 자유변수 이용
+			var model = m?m:'unknown';
+			return { // Car의 instance가 아님
+				getModel:function(){return model;},
+				setModel:function(m){model = m;}
+			};
+		};
+		console.dir(Car);
+		var sm5 = Car('SM5'); // new Car('SM5');.  Method로 이루어진 객체 => 자바스크립트 라이브러리에서 자주 접할 수 있다
+		console.log(sm5.getModel());
+		sm5.setModel('SSMM55');
+		console.log(sm5.getModel());
+		console.dir(sm5); 
+
+	</script>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 참조타입은 해당 address에 변수값이 아닌 reference address가 있다.
+var obj={prop:"realVal"};
+//address 1000: address 1001(prop):"realVal" //실체가 1000번지에 생성됨
+//address 100(obj):1000 //obj의 address에 1000이 reference로 들어감
+var obj1 = obj; // obj1의 address에 1000dl reference로 들어감
+// address 101(obj1) : 1000
+console.log(typeof(obj) + " " +obj.prop + " " + typeof(obj1) + " " +obj1.prop);
+obj1.prop="Changed";
+console.log(typeof(obj) + " " +obj.prop + " " + typeof(obj1) + " " +obj1.prop);
+//주의: 같은 번지수를 가르키므로 같이 변한것으로 나옴.
+// 기본타입과 다름에 주의. 가본타입은 address에 최종값.
+
+var a=1; var b= a; a=2;
+console.log(a + " " + b);
+console.log("-------------------------");
+
+//비교
+console.log("----------num --------------");
+var num1 = 100; var num2= 100;
+console.log(num1 == num2);
+num1 = 101;
+console.log(num1 == num2);
+
+console.log("----------obj --------------");
+var objA = {prop:1000}; 
+var objB = {prop:1000}; 
+var objC = objA;
+console.log(objA == objB);
+console.log(objA == objC);
+objA.prop = 1001;
+console.log("----------obj after --------------");
+console.log(objA == objB);
+console.log(objA == objC);
+
+objC = 2000; // objC의 address의 내용이 바뀜 (기본타입 number)
+console.log(typeof(objC) + " " + (objA == objC) );
+
+</script>
+</body>
+</html>

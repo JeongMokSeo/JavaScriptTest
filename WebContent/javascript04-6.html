@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 내부함수 : 함수속에 정의된 함수
+function main() {
+	var a= 1, b=2;
+	function sub() {
+		var a=3, c=4;
+		console.log('inside sub :' + a + "," + b + "," + c+ "," + main.c)  //외부값 유효
+	}
+	console.dir(sub);
+	sub();
+	console.log("outside sub:" + a + "," + b);  
+}
+main.c = 5;  //동적 객체 프로퍼티 생성
+main();
+console.dir(main);
+for(prop in main) console.log(prop + ":" + main[prop]);
+//sub(); //error. 함수의 내부는 외부에서 접근불가
+
+//변수 vs 프로퍼티
+//javascript실행: global context, function context, eval context.
+//context : application 실행을 위한 정보와 환경모음.  은행에서 돈 찾을때 이름, 계좌번호, 비번, 금액 등이 context
+//변수는 이 context에 소속. context에 VariableObject와 연계, 여기에 속함. global의 VariableObject가 'window'
+var v1 = "hello";
+console.dir(window);
+console.dir(window.v1);
+//funciton context의 VariableObject는 ActivationObject라고 불리는데, 접근이 불가능. 그래서 함수 밖에서 참조 X
+//  반면 프로퍼티는 객체의 요소
+var s1 = 1; // global context
+function aa() {
+	var s2 = 2; //function context
+	s3 = 3;  // global context, maybe not
+}
+aa.s4 = 4; //object property
+//console.log(s1 + " " + s3);  //현재의 chrome에서는 error
+console.log(window.s1 + " " + window.s3);
+console.log(aa.s4);
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 객체 프로퍼티 by for in
+
+
+var car1 = {
+	company:"Hyundai",
+	model:"Sonata",
+	cc:2000,
+	'old-name':"stella",
+	toString : function() { return 'model';}
+}
+
+var member;
+for (member in car1) {
+	console.log(member + ":" + car1[member]);
+}
+console.log("-------------------------");
+
+//property 삭제: delete.  delete로객체는 삭제 되지 않음.
+delete car1.toString;
+for (member in car1) {
+	console.log(member + ":" + car1[member]);
+}
+console.log("-------------------------");
+delete car1 ; //불가.
+console.log(car1);
+
+console.log("-------------------------");
+car1 = null;
+delete car1; //지워지지 않는다.
+console.log(car1);
+
+console.log("-------------------------");
+car1 = undefined;
+delete car1; //지워지지 않는다.
+console.log(car1);
+
+
+
+</script>
+</body>
+</html>

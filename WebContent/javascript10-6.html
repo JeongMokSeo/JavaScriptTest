@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>객체지향 프로그래밍 II</title>
+ </head>
+ <body>
+  <div>
+	<script>
+		// 응용예제 : 함수를 호출한 객체를 상속받은 인자객체를 생성하는 클라스 generator(생성자함수 생성함수) III
+		// 캡슐화 이용 객체 활용
+		var gensubClass = function(){
+			var F = function(){};
+			var gensubClass = function(obj){
+				var parent = this===window?Function:this;
+				F.prototype=parent.prototype; 
+				var subClass = function(){ 
+					var _parent = subClass.parent_constructor;
+					if(_parent && _parent !== Function) _parent.apply(this, arguments); 
+					if(subClass.prototype.hasOwnProperty('startup')) subClass.prototype.startup.apply(this, arguments);
+				}; 
+				subClass.prototype=new F();  
+				subClass.prototype.constructor=subClass;
+				subClass.parent = parent.prototype;
+				subClass.parent_constructor = parent;
+				subClass.gensubClass = arguments.callee;
+				for(var i in obj) {if(obj.hasOwnProperty(i)) subClass.prototype[i] = obj[i];}
+				return subClass;
+			};
+			return gensubClass;
+		}();
+
+		var animal = function(){
+			var name;
+			return { // ** startup 이용하여 인자로 이름과 함께 생성
+				startup:function(arg){name=arg;}, getName:function(){return name;}, setName:function(arg){name=arg;}
+			};
+		};
+		var Animal = gensubClass(animal()); // name이 접근불가한 영역에 격리되어 있다.
+		console.dir(Animal);
+		var tiger = new Animal('Tiger'); // **
+		console.log(tiger.getName());
+		console.dir(tiger);
+
+		var Fish = Animal.gensubClass();
+		console.dir(Fish);
+		var shark = new Fish('Shark'); // **
+		console.log(shark.getName());
+		console.dir(shark);
+	</script>
+  </div>
+ </body>
+</html>

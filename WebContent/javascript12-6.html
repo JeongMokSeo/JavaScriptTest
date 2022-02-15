@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+	// 함수형프로그램을 활용한 주요 함수들
+	// wrapper : 다른 함수를 자신의 함수로 덮는 것. override와 유사
+	function wrap(obj, method, wrapper){
+		var f = obj[method];
+		return obj[method] = function(){
+			//return wrapper.apply(this, [f].concat(Array.prototype.slice.apply(arguments))); 
+			return wrapper.apply(this, [f.bind(this)].concat(Array.prototype.slice.apply(arguments))); 
+			// 첫인자로 original method. override시 이용. f를 자유변수로하는 클로저
+		};
+	}
+	Function.prototype.original = function(val){
+		this.val = val;
+		console.log("val : " + val);
+	}
+	function f(){}
+	f.original(10);
+	console.dir(f);
+	console.log("============");
+
+	wrap(Function.prototype, 'original', function(orif, val) { // original 교체
+		orif(val);
+		this.val = val * 2;
+		console.log("new val : " + this.val);
+	});
+	f.original(10);
+	</script>
+  </div>
+
+</body>
+</html>

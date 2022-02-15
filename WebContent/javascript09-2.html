@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//상속 : 클라스 기반, 프로토타입 이용
+	//상속의 기본예제(프로토타입 이용)
+	function create_object(o) { 
+		function F() {} //빈생성자 함수
+		F.prototype = o; //자식의 __proto__
+		console.dir(F);
+		return new F(); // o를 __proto__로 갖는 객체(o를 상속받은 객체)
+	}
+	var arr=[1,2,3];
+	var subarr = create_object(arr);
+	console.dir(arr);
+	console.dir(subarr);
+	console.log(subarr.length);
+	for(var i in subarr) {
+		console.log(i + ":" + subarr[i]);
+	}
+	
+	console.log("========================")
+
+	var sm5 = {
+		model:"sm5",
+		getModel:function() {return this.model;},
+		setModel:function(model) {this.model = model;}
+	}
+	var sm51 = create_object(sm5);
+	console.dir(sm51);
+	sm51.setModel("New SM5");
+	console.log(sm51.getModel());
+	
+	</script>
+</div>
+
+</body>
+</html>

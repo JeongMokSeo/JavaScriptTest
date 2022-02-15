@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+<div>
+	<script type="text/javascript">
+	// scope(유효범위) chain 예제 3 step
+	
+	var testval = 1;
+	function f1() {
+		var testval = 2;
+		function f2(v) {
+			var testval =3;
+			//3. *** f2_context 생성 -> f2_활성객체생성(f2obj) -> f2obj에 [[Scopes]] -> f2obj에 testval:3 -> f2[[Scopes]]에 변수참조. f2[[Scopes]] = 2:window + 1:f1obj + f2obj
+			console.log("3 this:" + this);
+			return testval + "," + v;
+		}
+		//2. ** f1_context생성 -> f1_활성객체생성(f1obj) ->f1obj에 [[Scopes]] -> f1obj에 testval:2 f2:function... -> f1[[Scopes]]에 변수참조. f1[[Scopes]] = 1:window +0:f1obj
+		console.log(testval, f2);
+		console.log("f2(testval):" + f2(testval)); // ***
+		console.log("2 this :" + this);
+		console.log(testval, f2);
+	}
+	//1. global context ->window -> [[Scopes]] ->window,dp testval:1, f1:function ... -> [[Scopes]]에 변수참조. global[[Scopes]] = 0:window
+	console.log(this.testval + " , " + f1);
+	f1();
+	console.log("1 this :" + this);
+	
+	
+	</script>
+</div>
+
+</body>
+</html>

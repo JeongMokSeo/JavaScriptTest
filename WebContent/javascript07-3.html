@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// scope(유효범위) chain
+// javascript는 함수내부의 {}, loop나, if의 {} 은 scope에 영향이 없고, 함수단위로 영향
+var glob = "blobal 1";
+var test = "test outside";
+if(true) { var varif="inside if{}";}
+console.log("varif:" + varif);
+var f = function() {
+	var test = "test inside function";
+	var varfunc = "define inside function";
+	glob2 = "inside function without var";
+	console.log("test:"+test);
+	console.log("varfunc:"+varfunc);
+	console.log(glob, varif, glob2, ":", test, varfunc);  //전 + 현
+}
+console.dir(f);
+f();// 
+console.log("====================");
+console.log("test:"+test);
+console.log("glob2:"+glob2);
+// 활성객체 window, arguments가 없음. scope chain 생성(0:global(window)), 변수생셩, scope chain변수참조, this:window
+// ** f_context생성, f활성객체.arguments(empty).f scope chain(0:f활성객체, 1:window) , test, varfunc생성, f scope chain 변수참조
+// 현 scope chain = 전 scope chain + 현 변수객체
+
+
+
+</script>
+</body>
+</html>

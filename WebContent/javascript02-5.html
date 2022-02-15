@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+//배열 vs 객체
+var arr = ['one','twp', 'three'];
+console.log(arr[0] + " " + arr[1] + " " + arr[2]);
+var obj = {0:"one",1:"two",2:"three"};
+console.log(obj[0] + " " + obj[1] + " " + obj[2]);
+console.log(arr);
+console.log(obj);
+console.log(typeof(arr) + " " + typeof(obj));
+console.log(arr.length + " " + obj.length);
+console.log("-------------------------");
+//배열 프로토에 포함된 함수들
+arr.reverse();
+arr[10] = "eleven"; obj[10] = "eleven";
+for(key in arr) {console.log(key + ":" + arr[key]);}
+for(key in obj) {console.log(key + ":" + obj[key]);}
+console.log(arr[7] + " " + obj[7]);
+console.log("-------------------------");
+// 객체로서의 배열
+var arr1 = ['one','twp', 'three'];
+arr1['type'] = "triangle";
+arr1.volume = 100;
+console.log(arr1);
+console.log(arr1.length);  //숫자 index만 적용됨
+arr1.length=2;
+console.log(arr1);
+arr1['5'] = 6;
+console.log(arr1);  //문자열 숫자는 index로 인식됨. arr1.5 arr1.'5'는 syntax error
+console.log(arr1.length);  //숫자 index만 적용됨
+
+
+</script>
+</body>
+</html>

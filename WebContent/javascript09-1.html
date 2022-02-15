@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//클래스기반 vs 프로토타입기반
+	//안정, 정확     동적, 자유로움
+	function Car(model) {  //생성자 함수
+		this.model = model;
+		this.getModel = function() {return this.model;}
+		this.setModel = function(model) {this.model = model;}
+	}
+	console.dir(Car);
+	var sm5 =new Car("SM5");
+	console.dir(sm5);
+	console.log(sm5.getModel());
+	sm5.setModel("New SM5");
+	console.log(sm5.getModel());
+	var sm3 =new Car("SM3");
+	var sm7 =new Car("SM7");
+	console.dir(sm3);
+	console.dir(sm7);
+	
+	console.log("========================")
+	//javascript의 장점을 살리자
+	function NewCar(model) {
+		this.model = model;
+	}
+	var pony = new NewCar("Pony");
+	NewCar.prototype.getModel = function() {return this.model;}
+	NewCar.prototype.setModel = function(model) {this.model = model;}
+	console.dir(NewCar);
+	var sonata = new NewCar("Sonata");
+	var avante = new NewCar("Avante");
+	console.dir(pony);
+	console.dir(sonata);
+	console.dir(avante);
+	
+	console.log(sonata.getModel() + " " + avante.getModel() + " " + pony.getModel());
+	// pony.getModel()?: __proto__는 부모(생성자함수)의 prototype을 가리킨다(복사가 아님. 링크)
+	</script>
+</div>
+
+</body>
+</html>

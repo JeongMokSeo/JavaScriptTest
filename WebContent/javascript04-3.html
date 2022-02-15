@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+//hoisting : 선언은 아래에 있어도 코드 전반에 유효. 선언문(statment)방식은 내용까지 hoist됨 !!!
+console.log(a);  // 에러가 안남
+console.log(add(5,4));  //작동
+console.log(typeof(minus) + ":" + minus);  //error 안남. 아직 함수가 할당 되지 않음.
+//console.log(typeof(minus(9,5));  // 따라서 작동은 X. error
+
+var a = 7;
+function add(x,y) { return x + y ;} ;   // statement   -->  var add() = function add(x,y) { return x + y ;} ;  이렇게 맨위로 올려서 자동생성된다고 보여짐
+var minus = function(x,y) { return x - y;};  // expression
+
+console.log("=function hosting=");
+console.log(test(2,3));
+function test(x, y) { return test1(x,y);}
+function test1(x,y) { return x + y ;}
+
+//hosting이 발생하면, 코드 읽는것을 어렵게 한다는 이유로 statment방식을 반대하는 견해도 있음.
+
+</script>
+</body>
+</html>

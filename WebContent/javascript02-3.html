@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 프로토타입: --proto--(Chrome)또는 [[Prototype]],부모객체를 가리키는 reference, hidden
+//기본적으로 상속
+var a = Object() //최상위 원형객체
+console.dir(a);
+console.log(a.toString());
+console.log(a.toString.name);
+
+var b = {type:'fruit', name:'apple'};
+console.dir(b);
+console.log(b.toString());
+console.log(b.toString.name);
+
+console.log(a.Prototype === b.Prototype);  //같은 reference
+// __proto__는 생성자에 따라 다르다 (가장 기본이 Object.prototype)
+// --proto__의 값을 동적으로 바꿀수 있다.
+
+var npro ={toString: function() {return 'new toString';}};
+b.Prototype = npro;
+console.dir(b);
+console.log(b.toString());
+console.log(a.Prototype === b.Prototype);  //다른 reference
+
+</script>
+</body>
+</html>

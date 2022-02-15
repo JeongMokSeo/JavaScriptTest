@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+//배열의 프로퍼티 list
+var arr = ['one','twp', 'three'];
+arr[5] = 'six';
+arr['type']="triangle";
+arr.volume = 100;
+arr.f = function() {console.log('no problem');};
+console.log(arr);
+arr.f();
+for (var i = 0; i < arr.length; i++) { console.log(i + ":" + arr[i]);}
+console.log("=============================")
+for(key in arr) {console.log(key + ":" + arr[key]);}
+console.log("=============================")
+delete arr[5];  // 배열 member삭제 : delete (undefined화)
+for (var i = 0; i < arr.length; i++) { console.log(i + ":" + arr[i]);}
+console.log(arr.length);
+console.log("=============================")
+//완전히 잘라내려면 splice(시작, 갯수, (잘린부분에 삽입될 대체 요소들) 사용)
+arr.splice(5,1)
+for (var i = 0; i < arr.length; i++) { console.log(i + ":" + arr[i]);}
+console.log(arr.length);
+console.log("=============================")
+arr.splice(4,1, "s1","s2","s3");
+for (var i = 0; i < arr.length; i++) { console.log(i + ":" + arr[i]);}
+console.log(arr.length);
+
+console.log("=============================")
+//Array() 생성자 함수 : literal 사용이 주류
+var arr1 = Array(5);
+console.log(arr1);
+var arr2 = Array(1,2,3);
+console.log(arr2);
+
+//인자가 1개이고, 숫자면 크기선언으로 인식. 따라서 숫자 하나만 들어있는 배열은 이 방법으로 불가
+
+</script>
+</body>
+</html>

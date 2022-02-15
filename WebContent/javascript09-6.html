@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//클라스 기반 상속
+	function Car(model) {
+		this.model = model;
+	}
+	Car.prototype.getModel=function(){console.log(this.model);};
+	Car.prototype.setModel=function(model){this.model = model;};
+	function MiniCar(model, cc) {Car.apply(this,[model]); this.cc = cc;};
+	function F(){}; // Car의 객체들과 MiniCar의 객체들이 독립적이어야 ...
+	F.prototype=Car.prototype; // F와 Car는 같은 자식을 갖는다
+	console.dir(F);
+	MiniCar.prototype=new F(); // F를 통해 생성된 객체를 참조
+	MiniCar.prototype.constructor=MiniCar; // constructor변경 
+	MiniCar.prototype.getModel=function(){console.log(this.model + ' : ' + this.cc + ' cc');}; // Car객체를 직접 사용하면 독립 문제 발생
+	console.dir(MiniCar);
+	var tico=new MiniCar('Tico', 800);
+	console.dir(tico);
+	var sm5=new Car('SM5');
+	console.dir(sm5);
+	tico.getModel();
+	sm5.getModel();
+
+	// 참조 최적화 상속 코드
+	var inherit = function(Parent, Child) {
+		var F = function(){};
+		return function(Parent, Child) { // F가 클로저의 자유변수
+			F.prototype = Parent.prototype;
+			Child.prototype = new F();
+			Child.prototype.constructor = Child;
+			// Child.super = Parent.prototype; // 향후 부모 prototype 이 필요할 경우 대비
+		};
+	}();
+	function BigCar(model, cc) {Car.apply(this,[model]); this.cc = cc;}
+	inherit(Car,BigCar);
+	console.dir(BigCar);
+	var truck = new BigCar('Truck', 5000);
+	console.dir(truck);	
+	
+
+	</script>
+</div>
+
+</body>
+</html>

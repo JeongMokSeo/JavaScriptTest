@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//overwrite,c추,제거
+	function create_object(o) { 
+		function F() {} //빈생성자 함수
+		F.prototype = o; //자식의 __proto__
+		//console.dir(F);
+		return new F(); // o를 __proto__로 갖는 객체(o를 상속받은 객체)
+	}
+	var sm5 = {
+		model:"sm5",
+		getModel:function() {return this.model;},
+		setModel:function(model) {this.model = model;}
+	}
+	var sm51 = create_object(sm5);
+	sm51.setModel("New SM5"); // model프로퍼티 overwirte
+	sm51.dispModel = function() {console.log("*****" + this.model + "*****");}; //method추가
+	sm51.getModel= function() {return "Model:" + this.model;}; //method overwrite
+	console.log(sm51.getModel());
+	sm51.dispModel();
+	console.dir(sm51);
+	console.log("** sm5 **");
+	console.log(sm5.getModel());
+	console.dir(sm5);
+
+	
+	</script>
+</div>
+
+</body>
+</html>

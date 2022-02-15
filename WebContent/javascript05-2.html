@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 함수와 this
+// javascript 함수의 인자는 타이과 갯수가 자유롭다.
+function free(x, y) { console.log( x + ", " + y + ", " + (x+y));}
+free(1,4);
+free(1,'a');  // 문자열 연산
+free(1);      // undefined, NaN
+free(1,4,3);  // 무시
+// 다양한 경우의 호출을 대비해야 ==>  argument객체: 함수호출시 유사배열형태로 함수 내부에 전달
+
+function afunc(x,y,z) {
+	console.dir(arguments);  //유사배열 __proto__가 Object
+	console.log(x + " " + y + " " + z);
+}
+afunc(1,3,5);
+afunc(1);
+afunc();
+var arr = [1];
+console.dir(arr); // _proto__가 Array[0]
+
+
+
+
+</script>
+</body>
+</html>

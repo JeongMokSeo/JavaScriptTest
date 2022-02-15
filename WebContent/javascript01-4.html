@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 객체 프로퍼티 활용 : objectname['propertyname'], objectname.porpertyname
+
+
+var car1 = {
+	company:"Hyundai",
+	model:"Sonata",
+	cc:2000,
+	'old-name':"stella",
+	toString : function() { return 'model';}
+}
+//접근
+
+console.log(car1.company);
+console.log(car1['model']);
+console.log(car1['cc']);
+console.log("-------------------------------");
+// 할당, 수정
+car1.company = "Kia";
+car1['model'] = "K5";
+car1['cc'] = 1998;
+console.log(car1);
+console.log("-------------------------------");
+//동적생성
+car1.color = 'red';
+car1['price'] = 2500;
+console.log(car1);
+//있으면 수정, 없으면 동적 생성이 된다
+console.log("-------------------------------");
+//console.log(car1[company]);
+var company = "cc";
+console.log(car1[company]); // company --> 'cc' --> car1['cc']  --> 1998
+console.log(car1[car1]); //car1의 toString 호출 --> model리턴 --> car1['model']  --> K5가 최종값
+console.log("-------------------------------");
+
+//.사용 불가의 경우, 연산자와 혼동되는 경우
+console.log(car1['old-name']);
+console.log(car1.old-name);  // car1.old에서 name을 빼려고 함. 숫자가 아니니까 NaN (Not a Number)출력
+//console.log(car1.'old-name'); // syntex error
+
+	
+	
+</script>
+</body>
+</html>

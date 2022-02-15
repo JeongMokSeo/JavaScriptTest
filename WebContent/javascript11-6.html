@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+		// array, list에서의 활용. 예제는 James Sinclair 사이트에서 인용
+		// 종합
+		function t(s,d){ // 초간단 templete  출처 : Thomas Fuchs’ tweet-sized templating engine
+			for(var p in d) s=s.replace(new RegExp('{'+p+'}','g'), d[p]); 
+			return s; 
+		}
+		var data = {name:'Thomas', subject:'Math', point:95};
+		var rst = t("Hi, {name}! You got {point} in {subject}.", data);
+		console.log(rst);
+
+		function joinWord(sentence, word) {
+			return sentence + ' ' + word;
+		}
+
+		var map = function(arr, callback) {
+			var newArr = []; // return값 모음
+			for (var i in arr) newArr[i] = callback(arr[i]);
+			return newArr;
+		}
+
+		var reduce = function(callback, initialValue, array) {
+			var working = initialValue;
+			for (var i = 0; i < array.length; i = i + 1) {
+				working = callback(working, array[i]);
+			}
+			return working;
+		};
+
+		var items = [
+			[
+				['name',"Coach Women's Odette Loafers"],
+				['image','https://images-na.ssl-images-amazon.com/images/I/41Oh7TripHL.jpg'],
+				['description','Plushly padded inside and finished with hand-sewn details, this rubber-soled flat updates the iconic driving moc with the lux texture of patent leather and the bright shine of brand hardware.']
+			],
+			[
+				['name',"Coach Bleecker Men's Quartz Watch 14601521"],
+				['image','https://images-na.ssl-images-amazon.com/images/I/51OMvWDniRL.jpg'],
+				['description','Weight (lbs) : 1, Label : Coach, ListPrice : $189.95, Manufacturer : Coach']
+			],
+			[
+				['name','COACH Womens Pebbled Turnlock Hobo SV/Seaglass Hobo'],
+				['image','https://images-na.ssl-images-amazon.com/images/I/51MGz93ASlL.jpg'],
+				['description',"This has to be the prettiest COACH purse ever made!!! It is so soft and has the perfect amount of room. All of the silver just pops and the shorter strap stays put on your shoulder better than any hobo I've ever had. Seller was wonderful to work with and shipping was reasonable and very quick. Very happy with this purchase!!!!"]
+			]
+		];
+
+		var addToObject = function(obj, arr) { // 2 원소 배열의 0이 프로퍼티명, 1이 값으로 객체에 추가
+			obj[arr[0]] = arr[1];
+			return obj;
+		};
+		var itemsToObject = function(arr) { // reduce 이용
+			return reduce(addToObject, {}, arr); // 각각을 {name:"...", image:"...", description:"..."} 으로 만듬
+		};
+		var tidyItems = map(items, itemsToObject);
+		console.log(tidyItems); // [itemobj, itemobj, itemobj]
+		var itemsToListItem = function(itemobj) {
+			var template = '<li><img src="{image}" alt="{name}"/>' +
+                   '<div><h3>{name}</h3><p>{description}</p>' +
+                   '</div></li>';
+			return t(template, itemobj);
+		};
+		var itemList = map(tidyItems, itemsToListItem);
+		console.log(itemList);
+		var html = '<ul>' + reduce(joinWord, '', itemList) + '</ul>';
+		console.log(html);
+		document.write(html);
+		// 함수를 이용하여 가능한 추상화하는 것이 포인트
+	</script>
+  </div>
+
+</body>
+</html>

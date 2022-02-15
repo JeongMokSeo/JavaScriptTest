@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 객체로서의 함수
+function fobj(x) { return x + 1;}
+console.log(fobj);
+for (prop in fobj) console.log(prop + ":" + fobj[prop]);
+fobj.id = 'fname';
+fobj.val = 250;
+fobj.calc= fobj(50); //단순한 값 할당.  다른의미 없음.
+console.dir(fobj);
+for (prop in fobj) console.log(prop + ":" + fobj[prop]);
+
+//javascript 함수의 특징
+/*
+ - literal생성
+ - 객체의 프로퍼티, 배열의 요소, 변수 등이 가능
+ - 함수의 인자, 리턴값 가능
+ - 동적 프로퍼티 생성및 할당
+ 이 모든것이 가능하여 first class객체라고한다.
+ 함수형 프로그래밍 가능 : 뒤에 설명
+ */
+
+var f1 = function() {};  //변수에 할당
+var arr = [1,2, function() {return false;}];  //배열의 요소
+console.log(arr[2]());
+var obj = {};
+obj.f = function() {return true;}; //객체의 프로퍼티
+console.log(obj.f());
+var f = function(inf) {  // 함수의 인자
+	console.log(inf(2)); // 2 + 10  
+	return function(y) { return y + 100; };  // 함수의 리턴값
+};
+function aaa(x) { return x + 10;}
+console.log(f(aaa)(5));  5 + 100
+
+</script>
+</body>
+</html>

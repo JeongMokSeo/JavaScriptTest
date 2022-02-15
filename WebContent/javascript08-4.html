@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로저</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//함수의 갭슐화
+	var rate = 0.7, pi=3.14;
+	function getSpace(r) { 
+		return pi* r**2 * rate;
+	}
+	console.log(getSpace(5));
+	
+	var rate = 8;
+	console.log(getSpace(5));
+	
+	var getSpaceNew = (function() {
+		var rate = 0.7, pi=3.14;
+		return function(r) { return pi* r**2 * rate}; //closure를 활용, 자유변수 rate와pi는 완전보호(캡슐에 갇힘)
+	})(); // 즉시실행 익명함수로 왜곡 원천봉쇄
+	console.log(getSpaceNew(5));
+	var rate = 8;
+	pi = 5;
+	console.log(getSpaceNew(5));	
+
+	</script>
+</div>
+
+</body>
+</html>

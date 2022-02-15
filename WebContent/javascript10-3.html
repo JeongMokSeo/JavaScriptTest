@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>객체지향 프로그래밍 II</title>
+ </head>
+ <body>
+  <div>
+	<script>
+		// 응용예제 : 함수를 호출한 객체를 상속받은 인자객체를 생성하는 클라스 generator(생성자함수 생성함수) I
+		var animal_obj = {startup:function(){console.log('*** animal_start ***')}, getName:function(){return this.aname;}, setName:function(arg){this.aname=arg;}}; // name은 여기 저기 많이 쓰여서 충돌위험
+		animal_obj.setName('Tiger'); console.log(animal_obj.getName());
+		console.dir(animal_obj);
+
+		var gensubClass = function(obj){  //생성자 함수를 생성한다. 호출자의 유전자도 포함.
+			var parent = this===window?Function:this; // 목적이 생성자함수를 만드는 것임
+			var F = function(){};
+			F.prototype=parent.prototype; // 최상위호출이면 Fuction의 유전자, 아니면 호출자의 유전자
+			var subClass = function(){}; 
+			subClass.prototype=new F();  // 빈함수 or 호출객체의 자식
+			subClass.prototype.constructor=subClass;
+			subClass.parent = parent.prototype;
+			subClass.parent_constructor = parent;
+			for(var i in obj) {if(obj.hasOwnProperty(i)) subClass.prototype[i] = obj[i];}
+			return subClass;
+		};
+
+		var Animal = gensubClass(animal_obj);
+		console.dir(Animal);
+		var tiger = new Animal();
+		tiger.setName('TTiger');
+		console.log(tiger.getName());
+		console.dir(tiger);
+	</script>
+  </div>
+ </body>
+</html>

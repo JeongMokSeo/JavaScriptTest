@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 프로토타입 chaining: property나 method를 찾아 조상을 계속 뒤지는 것을 말함.
+var litobj = {
+		name:"literal",
+		getName:function(){console.log(this.name);}
+};
+console.dir(litobj);  //생성자함수
+litobj.getName();
+console.log(litobj.hasOwnProperty("name")); // chaining --> __proto__
+
+function Gen(name) {this.name = name; this.getName = function(){console.log(this.name);}}
+console.dir(Gen);
+var genobj = new Gen('ByGen');
+console.log(genobj);
+genobj.getName();
+console.log(genobj.hasOwnProperty("name")); // chaining --> __proto__(Gen.prototype) --> __proto__(Object.prototype)
+//종점이 Object.prototype
+
+console.log("-------------------------")
+//Number.prototype, String.Prototype, Boolean.prototype
+console.dir(Number);
+console.dir(String);
+console.dir(Boolean);
+var before = "Before";
+//before.sayHo(); //error
+
+String.prototype.sayHo = function() {console.log("Say Ho");}; // prototype들도 객체이어서 동적 method추가 가능, 확장가능
+var str = new String("ByGen");
+var str1 = "common string";
+str.sayHo();
+str1.sayHo(); //객체화, 서비스, 원복
+
+
+
+
+
+</script>
+</body>
+</html>

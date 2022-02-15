@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로저</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//함수에 사용자 정의 method연결
+	
+	function Line(func) { // 생성자 함수
+		this.base = "=";
+		this.func = func;
+	}
+		
+	Line.prototype.draw = function(func) { // 자식의 __proto__
+		func ? func(this.base) : this.func(this.base); //그릴 함수가 전달되면 그것을 이용, 아니면 기본을 이용
+	};
+	console.dir(Line);
+	var defaultDraw = function(base) {
+		console.log(base.repeat(20));
+	};
+	var line1 = new Line(defaultDraw);
+	console.dir(line1);
+	line1.draw(); //기본
+	line1.draw(function(base){console.log(base.repeat(7)+"******"+ base.repeat(7));}); //그리기 함수 전달
+
+	//closure를 이용하여 draw를 변경해 보자. base지정, 중앙값
+	function drawNew(obj, method, name) { //obj는 NewObj
+		return (function(base){  //***
+			obj[method](base,name); //최종실행은 NewObj의 newdraw함수
+		});
+	}
+	function NewObj(obj, base, name) {//생성자 함수, return이 있다.
+		obj.base = base;
+		obj.func = drawNew(this, "newdraw", name); //여기의 this는 line1이 아니고 NewObj이다.
+		return obj; //새로바뀐 line1이 return;
+	}
+	NewObj.prototype.newdraw = function(base, name) {
+		console.log(base.repeat(5) + " " + (name || base.repeat(6)) + " " + base.repeat(5));
+	}
+	var newline1 = new NewObj(line1,"~","Angela");
+	console.dir(NewObj);
+	console.log(newline1 === line1); //newline1은 line1변신용도
+	console.dir(line1);
+	newline1.draw();
+	line1.draw(); // newdraw형태로 반납되는 함수(*** 결국 line1.func)가 ,closure. obj, method, name 자유변수
+	line1.draw(function(base){console.log(base.repeat(20));});
+	
+	</script>
+</div>
+
+</body>
+</html>

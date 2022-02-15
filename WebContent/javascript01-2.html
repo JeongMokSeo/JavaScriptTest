@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// data type
+// 기본타입(value): address에 바로 최종값이 있다.
+/* 
+ * 
+    
+
+ */
+
+ 	var num =1;
+ 	var bool = true;
+ 	var str = "This is a String";
+ 	var nulllval = null;  // null은 프로그래머가 강제로 할당한 값!!! type은 object
+ 	var undef;  //선언후 한번도 값이 할당 되지 않은 상태가 undefined
+
+ 	console.dir(str);
+ 	console.dir(nulllval);
+ 	console.dir(undef);
+ 	c= 1.5e-2;  // var를 선언하지 않으면 자동으로 전역변수가 된다.
+ 	console.dir(c);
+ 	console.log(typeof num, typeof bool, typeof str, typeof nullval, typeof undef, typeof c);
+
+ 	var test;
+ 	console.log(typeof test, test, test + 2, test == false , test == 0, test == null, test == undefined);
+ 	test = null;
+ 	console.log(typeof test, test, test + 2, test == false , test == 0, test == null, test == undefined);
+ 	test = 2;
+ 	console.log(typeof test, test, test + 2, test == false , test == 0, test == null, test == undefined);
+ 	test = "test string";
+ 	console.log(typeof test, test, test + 2, test == false , test == 0, test == null, test == undefined);
+ 	test = undefined;
+ 	console.log(typeof test, test, test + 2, test == false , test == 0, test == null, test == undefined);
+ 	
+ 	console.log("---------------");
+ 	var f = function(var1, var2) {console.log(typeof var1, typeof var2);}
+ 	f(1,2);
+ 	f(1);
+ 	f();
+ 	
+ 	var k = f(1,2);
+ 	console.log(typeof k);  //return값이 없는 함수 결과 값도 undefined
+ 	
+ 	delete test;  //브라우저마다 다름. 권장X
+ 	console.log(typeof test); 
+ 	console.log("---------------");
+ 	test = void 0;
+ 	console.log(typeof test, test); 
+ 	
+ 	
+
+</script>
+</body>
+</html>

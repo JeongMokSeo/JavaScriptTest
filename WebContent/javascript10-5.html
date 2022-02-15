@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>객체지향 프로그래밍 II</title>
+ </head>
+ <body>
+  <div>
+	<script>
+		// 응용예제 : 함수를 호출한 객체를 상속받은 인자객체를 생성하는 클라스 generator(생성자함수 생성함수) III
+		// 클로저로 F 한 번만 생성
+		var animal_obj = {startup:function(){console.log('*** animal_start ***')}, getName:function(){return this.aname;}, setName:function(arg){this.aname=arg;}};
+		var gensubClass = function(){ // 1
+			var F = function(){}; // 2
+			var gensubClass = function(obj){ // 3
+				var parent = this===window?Function:this;
+				F.prototype=parent.prototype; 
+				var subClass = function(){ // 부모함수의 생성자 호출
+					var _parent = subClass.parent_constructor;
+					if(_parent && _parent !== Function) _parent.apply(this, arguments); // 최상위 Function은 stop
+					if(subClass.prototype.hasOwnProperty('startup')) subClass.prototype.startup.apply(this, arguments); // startup 실행.
+				}; 
+				subClass.prototype=new F();  
+				subClass.prototype.constructor=subClass;
+				subClass.parent = parent.prototype;
+				subClass.parent_constructor = parent;
+				subClass.gensubClass = arguments.callee; // gensubClass를 이용하여 2차 상속
+				for(var i in obj) {if(obj.hasOwnProperty(i)) subClass.prototype[i] = obj[i];}
+				return subClass;
+			};
+			return gensubClass; //4
+		}(); // 5 즉시실행, F가 자유변수
+
+		var Animal = gensubClass(animal_obj);
+		console.dir(Animal);
+		var tiger = new Animal();
+		tiger.setName('TTiger');
+		console.log(tiger.getName());
+		console.dir(tiger);
+
+		var fish_obj = {startup:function(){console.log('*** fish_start ***')}, getFin:function(){return this.fin;}, setFin:function(arg){this.fin=arg;}};
+		var Fish = Animal.gensubClass(fish_obj);
+		console.dir(Fish);
+		var shark = new Fish();
+		shark.setName('Shark');
+		shark.setFin(5);
+		console.log(shark.getName());
+		console.log(shark.getFin());
+		console.dir(shark);
+	</script>
+  </div>
+ </body>
+</html>

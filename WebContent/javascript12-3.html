@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+	// 피보나치 수열 : 단골 예제
+	// 피보나치 : A(n) = A(n-1) + A(n-2).  0,1,1,2,3,5,8,13,21,34,55,...
+	// 전통방식
+	function fibo(n){
+		if( n == 1) return 0; 
+		if( n == 2) return 1;
+		return fibo(n-1) + fibo(n-2);
+	}
+	var now = new Date(); var t1 = now.getTime();
+	console.log(fibo(40));
+	now = new Date(); var t2 = now.getTime();
+	console.log(t2 - t1);
+	console.log(fibo(41));
+	now = new Date(); var t3 = now.getTime();
+	console.log(t3 - t2);
+
+	function memo(f) { // memoization
+		return function (x) {
+			f.memo = f.memo || {};
+			return (x in f.memo)? f.memo[x] : f.memo[x] = f(x); 
+		}; 
+	}
+
+	var nfibo = memo(fibo);
+	var now = new Date(); var t1 = now.getTime();
+	console.log(nfibo(40));
+	now = new Date(); var t2 = now.getTime();
+	console.log(t2 - t1);
+	console.log(nfibo(41));
+	now = new Date(); var t3 = now.getTime();
+	console.log(t3 - t2);
+	console.dir(fibo);
+
+	var now = new Date(); var t1 = now.getTime();
+	console.log(fibo(40) + fibo(41));
+	now = new Date(); var t2 = now.getTime();
+	console.log(t2 - t1);
+	console.log(nfibo(40) + nfibo(41)); // 40, 41이 memo에 있으므로 거의 no time
+	now = new Date(); var t3 = now.getTime();
+	console.log(t3 - t2);
+	</script>
+  </div>
+
+</body>
+</html>

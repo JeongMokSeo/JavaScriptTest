@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+//함수의 이해가 javascript의 가장 중요한 부분
+//생성방법 : statement, expession, 생성자 함수
+//표현식
+function mFunc (arg1, areg) {return false;}
+// keyword name arguments body
+// name: 필수가 아니다. 이름이 없는 함수를 익명함수라고 한다.
+// arguments : type이 없다.
+
+// statment(선언방식) : 함수명 필수
+function lensum(a,b) {
+	return (a+b).length;
+}
+
+console.log(lensum("ab","cde"));
+
+//expression(표현식 방식) : 객체변수로 할당
+var lensum1 = function(a, b) {  //익명함수 사용
+	return (a+b).length;
+}
+console.log("lensum:" + lensum("aabb","ccdd"));
+console.log("lensum1:" + lensum1("aabb","ccdd"));
+var lensum2 = lensum1;  //lensum2도 같은 address상용
+console.log("lensum2:" + lensum2("aabb","ccdd"));
+
+var lensum3 = function concatlen(a,b) {  //기명함수 사용
+	return (a+b).length;
+}
+console.log("lensum3:" + lensum3("aabb","ccdd"));
+console.log("lensum3:" + concatlen("aabb","ccdd"));  // err. why? 접근자체를 할수 없다.
+
+
+</script>
+</body>
+</html>

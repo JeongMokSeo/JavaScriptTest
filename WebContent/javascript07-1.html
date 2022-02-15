@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// context : 자바스크립트 실행코드 블록이 실행되는 환경
+// 전역 context, 함수 context, eval context
+// context stack에 입출, 현재 실행 context가 최상위
+// 변수는 context의 VariableObject(활성객체)에 소속
+
+var v = "global v";
+var w = "global w";
+console.log(window.v + " " + window.w);
+var f = function() {var v="f v"; console.log(v + ", " + w + ", " + window.v);}
+f();
+console.log("====================");
+var g = "global";
+console.log("global context : " + g);
+function fcon() {var f1="function1"; console.log("fcon context:" + f1);}
+function fcon2() {
+	var f2 = "function2";
+	fcon();
+	console.log("f2 context :" + f2);
+}
+fcon2(); //context stack : global -> fcon2/global ->fcon/fcon2/global - >fcon2/global -> global
+// global을 제외한 function context들의 VariableObject들은 접근할수 있는 이름이 없다. 외부로부터은닉
+console.log("====================");
+console.dir(fcon2);
+
+
+
+
+
+</script>
+</body>
+</html>

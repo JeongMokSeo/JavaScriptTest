@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+	function mouseover_image() {
+		document.img_change.src="https://www.alzio.co.kr/expert/img/alzio_info_good.png";	
+	}
+	
+	function mouseout_image() {
+		document.img_change.src="http://www.alzio.co.kr/expert/img/alzo_main_logo.png";			
+	}
+	
+	function call_func(a,b) {
+		document.write(arguments[0],"<br>");
+		document.write(arguments[1],"<br>");
+		
+		document.write(arguments.caller[0],"<br>");
+		document.write(arguments.caller[1],"<br>");
+	}
+
+	function caller_func(c,d) {
+		call_func(300, 400);
+	}	
+
+*/	
+
+function open_win(){
+
+}
+	
+</script>
+</head>
+<body>
+
+<div id="alzio"></div>
+<button onClick="document.getElementById('alzio').innerHTML =Date()">날짜</button>
+<script type="text/javascript">
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+	
+/* 
+ 
+ 	
+ 	
+ 	
+ <div id="alzio"></div>
+<button onClick="document.getElementById('alzio').innerHTML =Date()">날짜</button>	
+ 	
+	var abcd = {
+			abc: "alzio", 
+			def:2003,
+	}
+	document.getElementById("alzio").innerHTML =abcd.abc + " and " + abcd.def + " IT전문교육"; 
+ 
+ 	function abcdef(a) {
+		return (5 + 9) * (a -1);
+	}
+	
+	document.getElementById("alzio").innerHTML = "alzio" + abcdef(55) + "open";
+
+var a = ["yes","no","null"];
+document.getElementById("alzio").innerHTML = a[1];
+
+ 	
+ <input type="button" value="창열기" onclick="open_win()" >	
+ 	window.open("http://www.daum.net","daum","resizable=no, width=500, height=500, left=0,top=0")
+ 
+function c_key() {
+	if (window.event.ctrlKey == 1) {
+		document.write("컨트롤 입력됨");
+	}
+}
+document.onkeydown = c_key
+ 
+ 
+document.write("전체화면의 높이:" + screen.height, "<br>");
+document.write("전체화면의 너비:" + screen.width, "<br>");
+document.write("실제화면의 높이:" + screen.availHeight, "<br>");
+document.write("실제화면의 너비:" + screen.availWidth, "<br>");
+document.write("사용가능한 색상:" + screen.colorDepth, "<br>");
+document.write("사용가능한 색상:" + screen.pixelDepth, "<br>");
+  
+  	caller_func(10,20);
+  
+  	func = new Function("a","b", "c","return(a+b)") 	
+	c = 10
+	d = 20
+	//document.write(func(c,d))
+	//document.write(func.length)
+	 
+	subtract = new Function("a","b", "c","return(a-b)")
+	document.write(subtract(c,d))
+	document.write("<br>")
+	document.write(subtract.length)
+
+  
+  document.write("alzio".fontcolor('red').strike().fontsize("25px"));
+  	var txta = "JavaScript anchor";
+	txta.anchor("anchor 1");	
+	//alert(txta.anchor("anchor 1"));
+	
+	
+ 	document.write("링크1".link('#1'));
+	document.write("<p>링크2".link('#2'),"</p>");
+	for (var i = 0; i < 50; i++) {
+		document.write("<br>");
+	}
+	
+	document.write("<p>링크결과1".anchor('1'),"</p>");
+	
+	for (var j = 0; j < 50; j++) {
+		document.write("<br>");
+	}
+	document.write("<p>링크결과2".anchor('2'),"</p>");
+	for (var j = 0; j < 50; j++) {
+		document.write("<br>");
+	}
+	
+	
+ 
+	st = "IT온라인 교육 알지오 2003";
+	document.write(st.length,"<br>");
+	document.write("IT온라인 교육 알지오 2003".length,"<br>");
+
+
+	today = new Date();
+	dday = new Date(2099,12,25);
+	a = dday.getTime();
+	b = today.getTime();
+	
+	day = Math.ceil((a - b) / ( 24 * 60 * 60 * 1000) );
+	document.write("d-day:",day);
+	
+	da = new Date();
+	document.write(da,"<br>");
+	document.write("오늘:",da.getFullYear(),"년 ",da.getMonth() + 1,"월 ", da.getDate(),"일", "<br>");
+
+	switch (da.getDay()) {
+	case 0:{
+		document.write("월요일"); break;
+	}
+	case 1:{
+		document.write("화요일"); break;
+	}
+	case 2:{
+		document.write("수요일"); break;
+	}
+	case 3:{
+		document.write("목요일"); break;
+	}
+	case 4:{
+		document.write("금요일"); break;
+	}
+	case 5:{
+		document.write("토요일"); break;
+	}
+	default:
+		document.write("일요일"); break;
+	}
+ 
+	document.write("<br>",da.toString());
+
+	
+	dd = new Date(1993,04,28,12,12,20,20,995);
+	document.write("<br><br>이날은:",dd.getFullYear(),"년 ",dd.getMonth() + 1,"월 ", dd.getDate(),"일", "<br>");
+	dd.setMonth(05);
+	document.write("<br><br>이날은:",dd.getFullYear(),"년 ",dd.getMonth() + 1,"월 ", dd.getDate(),"일", dd.getHours(),"시", dd.getMinutes(),"분", dd.getSeconds(),"초", dd.getMilliseconds(), "<br>");
+
+	
+
+	function alzio() {
+		alert("NO");
+	}
+
+<img src="http://www.alzio.co.kr/expert/img/alzo_main_logo.png"	 name="img_change" width="189" height="50" alt="IT전문교육 온라인 학원" >
+<img src="http://www.alzio.co.kr/expert/img/alzo_main_logo.png"	 name="img_change" width="189" height="50" alt="IT전문교육 온라인 학원" 
+		 onMouseover="mouseover_image()" onMouseout = "mouseout_image()" >
+ */
+</script>
+
+<!-- 	<p><a href="#3"> 링크3</a></p>
+	<p><a href="#4"> 링크4</a></p>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<p><a name="3">링크결과3</a></p>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<p><a name="4">링크결과4</a></p> -->
+	
+	
+</body>
+</html>

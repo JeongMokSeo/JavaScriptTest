@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+	// memoization : pure function cache 화 하여 반복 수행시 성능 향상
+	function pure(x) {return x * x;} // input이 같으면 output이 언제나 일정. 예측이 가능.
+	console.log(pure(4));
+	console.log(pure(4));
+	var a = 1;
+	function not_pure(x) {a++; return x + a;} // input이 같아도 output이 다를 수 있음.
+	console.log(not_pure(4));
+	console.log(not_pure(4));
+	
+	function memo(f) { // cache용 프로퍼티를 함수에 지정
+		return function (x) {
+			f.memo = f.memo || {};
+			return (x in f.memo)? f.memo[x] : f.memo[x] = f(x); 
+		}; 
+	}
+	var square = memo(pure);
+	console.log(square(99999));
+	console.log(square(99999)); // 계산안하고 memo에서 return
+	</script>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//상속 + addon
+	function create_object(o) { 
+		function F() {} //빈생성자 함수
+		F.prototype = o; //자식의 __proto__
+		//console.dir(F);
+		return new F(); // o를 __proto__로 갖는 객체(o를 상속받은 객체)
+	}
+	var sm5 = {
+		model:"sm5",
+		getModel:function() {return this.model;},
+		setModel:function(model) {this.model = model;}
+	}
+	var sm51 = create_object(sm5);
+	sm51.setModel = function(model){this.__proto__.setModel(model); console.log("Now model is " + model);}; // setModel을 __proto__가 호출. __proto__가 this
+	sm51.setModel("New SM5"); 
+	console.log(sm51.getModel());
+	console.dir(sm51);
+	
+	console.log("** sm5 **");
+	console.log(sm5.getModel());  // 조상이 바뀜.
+	
+	var sm5a =  create_object(sm5);
+	console.log(sm5a.getModel()); 
+	console.log("===============")
+	var sm6 = {
+		model:"sm6",
+		getModel:function() {return this.model;},
+		setModel:function(model) {this.model = model;}
+	}	
+	var sm61 = create_object(sm6);
+	sm61.setModel = function(model){this.__proto__.setModel.call(this,model); console.log("Now model is " + model);}; 
+	// setModel의 this를 sm61로 강제조정
+	sm61.setModel("New SM6"); 
+	console.log(sm61.getModel());
+	console.dir(sm61);	
+	console.log("** sm6 **");
+	console.log(sm6.getModel()); 
+	var sm6a =  create_object(sm6);
+	console.log(sm6a.getModel()); 
+	</script>
+</div>
+
+</body>
+</html>

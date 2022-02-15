@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+//연산자
+
+// + : 숫자끼리는 수의 더하기, 그 외에는 값들의 연결
+console.log(3 + 5);
+console.log(3 + "5");
+console.log('a' + 5);
+console.log('a' + 'bc');
+
+//typeof:type을 문자열로 반환
+console.log("==================");
+console.log(typeof(2));
+console.log(typeof("abc"));
+console.log(typeof(false));
+console.log(typeof(null));
+console.log(typeof(undefined));
+console.log(typeof({a:1}));
+console.log(typeof([1]));
+console.log(typeof(function(){}));
+
+console.log("==================");
+//=== vs ===
+// 비교전에 타입을 통일 한 후 비교한다.
+console.log(0 == false);
+console.log('0' == false);
+//===는 타입과 값이 모두 일치해야 true. 중요한 비교는 ===를 쓰자.
+console.log(0 === false);
+console.log('0' === false);
+console.log(0 === null);
+
+console.log("==================");
+//!! 피연산자를 boolean,으로 변환, !(not)과는 !!(not not)이라서 자체의 참, 거짓을 return 하는 듯
+console.log(!!true);
+console.log(!!false);
+console.log(!!0);
+console.log(!!1);
+console.log(!!'0'); //주의 string '0'은 ascii가 0 이 아니어서
+console.log("==================");
+console.log(!!'');
+console.log(!!' ');
+console.log(!!null);
+console.log(!!undefined);
+console.log(!![]); //객체는 address에 참조값이 있어서 true
+console.log(!![0]); 
+
+
+
+</script>
+</body>
+</html>

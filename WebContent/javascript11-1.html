@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	// 용어 정리 
+
+	// dry code : 코드의 중복을 가능한 막아 모듈화하는 노력
+
+	// side effect : 함수가 외부에 영향을 주는 것
+	var a =10;
+	function sideeffect(arg) {a+=arg;} 
+	sideeffect(4);
+	console.log(a); // 외부변수 a에 영향을 미친다. side effect가 있다.
+
+	// pure function (순수함수) : side effect가 없고, 입력이 같으면 항상 같은 출력이 나오는 함수
+	var nonpure1 = function(arg){console.log(Math.random(arg));};
+	nonpure1(2); nonpure1(2);
+	var pure = function(x,y){return x+y;};
+	console.log(pure(6,7)); console.log(pure(6,7));
+
+	// high-order function (고계함수) : 함수를 입력이나 출력의 인자로 사용하는 함수
+	var highorder = function(arg, infunc) {
+		var rst = infunc(arg[0],arg[1]);
+		return function() {console.log(rst);};
+	}
+	var showrst = highorder([3,4],pure); // input 인자에 pure함수, return을 함수로 => high-order function
+	console.dir(showrst);
+	showrst();
+
+	// javascript에서는 함수가 일급객체로서 입출력의 인자로 활용될 수 있기 때문에 수준 높은 dry code를 구현할 수 있다
+
+	</script>
+</div>
+
+</body>
+</html>

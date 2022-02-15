@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클로저</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//closure예제
+	
+		function circle(x, y) {
+			var pi = 3.14;
+			return function(x1, y1) { var r = Math.sqrt((x-x1)**2+(y-y1)**2)/2; console.log("r:" + r); return pi*r**2;};
+		}
+		var getspace = circle(0,0);
+		console.log(getspace(3,4)); // getspace가 closure. circle의 x,y,pi가 자유변수
+		
+		var ecounter = (function(){
+			var cnt=0;
+			return function() {console.log(++cnt);}
+		})(); //자유변수 활용과 은닉
+		
+		ecounter();
+		ecounter();
+		ecounter.cnt = 0; // 주의! 다시 한번 변수와 프로퍼티를 구분하자.  프로퍼티를 추가하여 0셋팅
+		console.dir(ecounter)
+		ecounter();
+		
+	
+	</script>
+</div>
+
+</body>
+</html>

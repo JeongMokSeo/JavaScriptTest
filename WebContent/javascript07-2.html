@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// context 생성절차
+function suminout(arg1, arg2) {
+	var fv1 = 1, fv2 = 2; //function context 소속
+	fv3 =3;  // windows 소속, window.f3:3
+	function addvar() {  //function context소속
+		return fv1 + fv2;
+	}
+	return arg1 + arg2 + addvar();
+}
+
+/*
+ * 
+ 1. suminout이 호출되면 function이 실행 context생성
+ 2. 정보저장용 활성 객체 생성 (arguments, variables, objects...)
+ 3. arguments 생성
+ 4. scope chain 생성 [[Scopes]]
+ 5. 변수생성
+ 6. this binding
+ 7. code실행
+ */
+console.log(window.fv3);
+console.dir(suminout);
+console.log(suminout(5,6));
+console.log(window.fv3);
+//console.dir(addvar);  //error
+/*
+suminout_context과정
+1. suminout_context[]
+2. suminout_context[활성객체[]]
+3. suminout_context[활성객체[arguments[arg1, arg2]]]
+4. suminout_context[활성객체[arguments[arg1, arg2], 스코프체인[list(0번이 활성객체, 1:window)]]]
+5. suminout_context[활성객체[arguments[arg1, arg2], 스코프체인[list], arg1, arg2, fv1, fv2, addval]]
+6. suminout_context[활성객체[arguments[arg1, arg2], 스코프체인[list], arg1, arg2, fv1, fv2, addval, this:window]]
+7. arg1:5, arg2:6, fv1:1, fv2:2, addval_context작업
+
+주위: node.js에서는 최상위가 windows가 아니다.
+*/ 
+ 
+ 
+console.log("====================");
+
+
+
+
+
+
+</script>
+</body>
+</html>

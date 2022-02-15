@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+  <div>
+	<div id='tiger'>Strong</div>
+	<div id='bear'>Big</div>
+	<div id='rabbit'>Cute</div>
+	<script>
+		// array, list에서의 활용. 예제는 James Sinclair 사이트에서 인용
+		// callback이 결과를 return할 경우에는?  => Map
+		var ids = ['tiger', 'bear', 'rabbit'];
+		var elements = [];
+		for (var i in ids) elements[i] = document.getElementById(ids[i]); // elements에 dom 객체 할당. 전통방식
+		console.dir(elements);
+
+		// high order function
+		var map = function(arr, callback) {
+			var newArr = []; // return값 모음
+			for (var i in arr) newArr[i] = callback(arr[i]);
+			return newArr;
+		}
+		// 인자 callback function		
+		var getElement = function(id) {
+			return document.getElementById(id);
+		};
+		var elements1 = map(ids, getElement);
+		console.dir(elements1);
+		
+		// array의 built-in function
+		var elements2 = ids.map(getElement);
+		console.dir(elements2);
+
+		elements2.forEach(function(dom){console.log(dom.innerText);});
+
+	</script>
+  </div>
+
+
+</body>
+</html>

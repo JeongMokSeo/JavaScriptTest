@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 함수객체의 기본 프로퍼티
+function f(x,y) { console.log(x + y);};
+console.dir(f);
+console.log(f.name);  //함수명
+console.log(f.caller); //호출자
+console.log(f.arguments);  //호출시 인자값들
+console.dir(f.__proto__);
+console.log(f.length);  // 기대되는 인자의 수
+
+function ff(x,y,z,u) {return x + y + z + u;};
+console.log(ff.length);  // 기대되는 인자의 수
+
+console.dir(f.prototype);  //  "__proto__"와 다르다. 함수생성시 constructor만 가진객체를 동시에 생성한다. 이것을 가리킨다.
+// f의 함수객체(prototype 이 f의 동시생성된 프로토타입 객체를 가리킴) <-> f의 포로토타입객체
+
+//콜백함수 : 이벤트나 특정시점에 시스템에 의해 호출될수 있도록 만들어진 함수
+window.onload = function() {alert("hello by onload");};
+
+//즉시 실행함수 : 선언과 동시에 
+(function(x,y) { var a=7; console.log(x+y+a);})(2,3); // (함수표현)(인자);
+//다음에 호출할 길이 없다.  한번만 실행하는 초기화 부분에 많이 활용
+// conslole.log(a);; // error 함수 내부에 선언된 변수는 외부에서 접근불가. 은닉, 충돌방지
+
+
+
+</script>
+</body>
+</html>

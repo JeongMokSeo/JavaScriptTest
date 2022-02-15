@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// call, apply를 통한 binding
+// this를 명시적으로 binding 시킨다.
+function Car(company, name) {
+	this.company = company;
+	this.name = name;
+}
+var z5 = {};
+Car.apply(z5,["BMW","Z5"]); // Car를 'z5'를 this로 binding하고, arguments를 ["BMW","Z5"]로 하여 실행
+console.dir(z5); //z5에 company,name property 생성 및 할당
+
+//call()은 뒤의 인자가 배열이 아니고 나열
+var tc = {};
+Car.call(tc,["Daewoo","Tico"]); 
+console.dir(tc); 
+
+var arr=[];
+console.dir(arr); //배열의 메서드 확인
+function func(x,y,z) {
+	console.dir(arguments); //유사배열
+	console.log(Array.prototype.reverse.apply(arguments)); // arguments가 reverse의 this. 배열의 method사용
+}
+func(1,2,3);
+
+// return: 모든 함수는 return값을 갖는다.
+// 일반함수는 return이 없으면 undefined를 return
+var f1 = function(){};
+console.log("f1:"+f1());
+//생성자함수
+function Const(x) {this.value = x ;};
+var f2 = new Const(7);
+console.log("f2:"+f2); //생성된 객체
+function Const1(x) {this.value = x ; return x + 1;};
+var f3 = new Const1(10);
+console.dir("f3:"+f3);  //생성된 객체
+var f4 = Const1(10);  
+console.log("f4:"+f4);  //return값
+function Const2(x) {this.value = x ; return {value : x + 1};};
+var f5 = new Const2(10);  
+console.dir("f5:"+f5);  //return에서 보낸 객체
+
+
+
+
+
+</script>
+</body>
+</html>

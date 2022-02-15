@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 프로토타입 chaining 시점
+// property 를 읽거나 실행할때 발생.
+// 값을 지정할때는 없는 경우 동적 할당이 된다.
+function Car(name) { this.name = name;}; 
+Car.prototype = {company : "Hyundai"}; 
+Car.prototype.name ="Name Of prototype";
+Car.prototype.logthisname = function() {console.log(this.name);};
+var sm3 = new Car("SM3");
+var sm5 = new Car("SM5");
+console.log(sm3.company + " " + sm5.company); //2개다 chaining
+//console.dir(Car);
+sm3.logthisname(); // chaining
+sm5.logthisname(); // chaining
+
+sm3.company="Samsung"; //동적할당
+console.log(sm3.company + " " + sm5.company); //sm3 direct sm5 chaining
+sm5.logthisname=function(){console.log(this.name + " : direct");};
+sm3.logthisname(); // chaining
+sm5.logthisname(); // direct
+Car.prototype.logthisname(); // direct, Car.prototype(호출자)dl this
+
+
+
+</script>
+</body>
+</html>

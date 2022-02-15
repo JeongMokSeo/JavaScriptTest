@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수형 프로그래밍 </title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+  <div>
+	<script>
+		// 팩토리얼 예제
+		// 전통방식
+		function factor(num){
+			var rst = 1;
+			for(var i = 2;i<=num;++i) rst=rst*i;
+			return rst;
+		}
+		/*	function factor(num){
+			if(num == 0) return 1;
+			return num * factor(num-1);
+		} */
+		console.log(factor(10));
+		console.log(factor(12));
+
+		var nfactor = function(){ // 함수형 프로그램으로 중복 계산을 제거
+			var cache = [1,1];
+			var f = function(num){
+				var rst=1;
+				if(cache[num]) rst = cache[num];
+				else {
+					rst = num * f(num-1);
+					cache[num] = rst;
+				}
+				return rst;
+			}
+			return f;
+		}(); // nfactor에 closure f가 할당. cache 가 자유변수
+		console.log(nfactor(10));
+		console.log(nfactor(12));
+
+	</script>
+  </div>
+
+</body>
+</html>

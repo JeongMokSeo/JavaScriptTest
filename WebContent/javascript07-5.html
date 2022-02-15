@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+<div>
+	<script type="text/javascript">
+	// scope(유효범위) chain 예제 2
+	
+	var testval = 1;
+	function f1() { return testval;}
+	
+	function f2(func) {
+		var testval = 2;
+		console.log(func()); // f2내부에서 f1 실행
+	}
+	f2(f1);
+	
+	//global scope = window(testval:1, f1:function....)
+	//f2 scope = window + f2obj(arguments:func, testval:2)
+	//f1 scope = window + f1obj(empty)
+	//f1 실행시 scope chain에 testval은 window의 testval:1이다.
+	
+	var obj = {testval:4, f3:function() {return this + ":" + this.testval + ":" + testval;}};
+	console.log(obj.f3());
+	//프로퍼티와 변수구별. 함수호출시 this는 호출주체를 지칭함(method의 경우 는 해당 객체)
+	
+	
+	</script>
+</div>
+
+</body>
+</html>

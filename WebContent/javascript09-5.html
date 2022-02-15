@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체지향 프로그래밍 1</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+
+<div>
+	<script type="text/javascript">
+	//일반적으로 extend()라는 이름의 함수로 추가
+	function create_object(o) { 
+		function F() {} //빈생성자 함수
+		F.prototype = o; //자식의 __proto__
+		//console.dir(F);
+		return new F(); // o를 __proto__로 갖는 객체(o를 상속받은 객체)
+	}
+	function extend(obj, addon) {  // obj에 addon 추가후 return
+		if(!addon) {addon= obj; obj=this;} // addon이 없으면, 현재객체에 obj추가후 return
+		for(var i in addon) obj[i] = addon[i];  //얕은복사, 필요시 깊은 복사로 변경
+		return obj;		
+	}
+	var sm5 = {
+		model:"SM5",
+		getModel:function() {return this.model;},
+		setModel:function(model) {this.model = model;}
+	}
+	var sm51 = create_object(sm5);
+	var addon = {
+			company:"Samsung",
+			model:"New SM5",
+			getCompany:function(){return this.company;}
+	};
+	extend(sm51, addon);
+	console.log(sm51.getModel());
+	console.log(sm51.getCompany());
+	console.dir(sm51);
+	//위의 create_object, extend는 아주 중요한 개념이므로 완벽하게 이해하도록..
+	
+	
+
+	</script>
+</div>
+
+</body>
+</html>

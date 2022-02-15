@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>참조타입과 연산자</title>
+<script type="text/javascript">
+
+
+
+</script>
+</head>
+<body>
+<div id="move_color" ></div>
+
+
+<script type="text/javascript">
+// 프로토타입 method , this binding
+function Car(name) { this.name = name;};  // Car.prototype : address 1000: const, __proto__
+Car.prototype.getName=function() {console.log(this.name);}; //Car.prototype : address 1000: const, getName, __proto__
+console.dir(Car);  //생성자 함수
+var sonata = new Car("Sonata");
+console.dir(sonata); //__proto__가 Car의 prototype: address 1000
+sonata.getName();  //this : sonata객체
+
+Car.prototype.getName();// this : Car의 prototype객체, name이 없다.
+Car.prototype.name ="car";// address 1000: const, getName, name, __proto__
+Car.prototype.getName();// this : Car.prototype객체, name이 있다.
+sonata.getName();  //this : sonata객체
+
+Car.prototype = {company : "Hyundai"}; // Car.prototype : address 2000: company, __proto__
+//prototype이 바뀌면 향후 탄생 객체는 바귄것을, 그전것은 그전 prototype을 참조
+console.dir(Car);
+var sm5 = new Car("SM5");
+console.dir(sm5);  // __proto__가 Car의 바뀐 prototype : address 2000
+console.log(sonata.company);
+console.log(sm5.company);
+console.log("---------------------");
+
+console.log(sonata.__proto__);  // 1000
+console.log(sm5.__proto__);     // 2000
+
+
+
+
+</script>
+</body>
+</html>
